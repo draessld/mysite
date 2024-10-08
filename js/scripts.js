@@ -32,3 +32,24 @@ window.addEventListener('DOMContentLoaded', event => {
     });
 
 });
+
+const pdfButton = document.getElementById('pdfButton');
+const overlay = document.getElementById('overlay');
+const closeBtn = document.getElementById('closeBtn');
+
+// Open the PDF in fullscreen when the button is clicked
+pdfButton.addEventListener('click', function() {
+    overlay.style.display = 'flex'; // Show overlay
+});
+
+// Close the overlay when the close button is clicked
+closeBtn.addEventListener('click', function() {
+    overlay.style.display = 'none'; // Hide overlay
+});
+
+// Close the overlay when clicking outside the iframe
+overlay.addEventListener('click', function(event) {
+    if (event.target === overlay) {
+        overlay.style.display = 'none'; // Hide overlay
+    }
+});
