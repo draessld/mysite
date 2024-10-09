@@ -319,14 +319,16 @@ figure {
   margin: 0 0 1rem;
 }
 #pdfButton {
-  padding: 15px 30px;
+  padding: 5px 15px;
   font-size: 16px;
   cursor: pointer;
-  background-color: #34b51e; /* Medium hunter green */
+  background-color: #0d5500; /* Medium hunter green */
   color: white;
   border: none;
-  border-radius: 5px;
+  border-radius: 15px;
   transition: background-color 0.3s;
+  width: 20%;
+  height: 60%;
 }
 
 #pdfButton:hover {
@@ -354,7 +356,7 @@ figure {
   position: absolute;
   top: 20px;
   right: 30px;
-  background-color: red;
+  background-color: rgb(25, 87, 1);
   color: white;
   border: none;
   padding: 10px;
