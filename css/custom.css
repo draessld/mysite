@@ -1,0 +1,398 @@
+/*!
+ * Site-specific styles.
+ *
+ * Everything here layers on top of the compiled Start Bootstrap "Resume"
+ * theme in css/styles.css. Keep styles.css untouched so the theme can be
+ * regenerated; put every local customisation in this file.
+ *
+ * Sections
+ *   1. Design tokens
+ *   2. Base & layout
+ *   3. Accessibility helpers
+ *   4. Navigation
+ *   5. Content components (badges, cards, publications, timeline)
+ *   6. Poster overlay (lightbox)
+ *   7. Motion & print
+ */
+
+/* ------------------------------------------------------------------ */
+/* 1. Design tokens                                                    */
+/* ------------------------------------------------------------------ */
+:root {
+  --site-accent: #2e5c18;
+  --site-accent-dark: #1f3f10;
+  --site-accent-soft: rgba(46, 92, 24, 0.09);
+  --site-muted: #6c757d;
+  --site-rule: #e4e7e2;
+  --site-surface: #fbfbfa;
+  --site-radius: 0.5rem;
+  --site-nav-width: 17rem;
+}
+
+/* ------------------------------------------------------------------ */
+/* 2. Base & layout                                                    */
+/* ------------------------------------------------------------------ */
+html {
+  scroll-behavior: smooth;
+}
+
+/* The fixed side nav becomes a top bar below 992px; offset anchor
+   targets so headings are not hidden underneath it. */
+section.resume-section {
+  scroll-margin-top: 4.5rem;
+}
+
+/* The display font is condensed, but a long surname can still overrun a
+   narrow viewport with the fallback font, so cap the fluid size. */
+h1,
+.h1 {
+  font-size: clamp(2.25rem, 1.2rem + 5.7vw, 4rem);
+  overflow-wrap: break-word;
+}
+
+@media (min-width: 992px) {
+  section.resume-section {
+    scroll-margin-top: 0;
+  }
+}
+
+.section-lead {
+  max-width: 60ch;
+  color: #3d443a;
+  font-size: 1.05rem;
+}
+
+.text-muted-sm {
+  color: var(--site-muted);
+  font-size: 0.9rem;
+}
+
+hr.m-0 {
+  border-top-color: var(--site-rule);
+  opacity: 1;
+}
+
+/* ------------------------------------------------------------------ */
+/* 3. Accessibility helpers                                            */
+/* ------------------------------------------------------------------ */
+
+/* Keyboard-only shortcut past the navigation. */
+.skip-link {
+  position: absolute;
+  top: -3rem;
+  left: 0.5rem;
+  z-index: 10001;
+  padding: 0.6rem 1rem;
+  background-color: var(--site-accent);
+  color: #fff;
+  border-radius: 0 0 var(--site-radius) var(--site-radius);
+  transition: top 0.15s ease-in-out;
+}
+
+.skip-link:focus {
+  top: 0;
+  color: #fff;
+}
+
+a:focus-visible,
+button:focus-visible,
+.social-icon:focus-visible {
+  outline: 3px solid var(--site-accent);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* ------------------------------------------------------------------ */
+/* 4. Navigation                                                       */
+/* ------------------------------------------------------------------ */
+#sideNav .navbar-nav .nav-item .nav-link.active {
+  color: #fff;
+  background-color: rgba(255, 255, 255, 0.15);
+}
+
+.social-icons .social-icon {
+  height: 3rem;
+  width: 3rem;
+  font-size: 1.25rem;
+  margin-right: 1rem;
+  margin-bottom: 0.75rem;
+  transition: background-color 0.2s ease-in-out, transform 0.2s ease-in-out;
+}
+
+.social-icons .social-icon:hover {
+  transform: translateY(-2px);
+}
+
+/* ------------------------------------------------------------------ */
+/* 5. Content components                                               */
+/* ------------------------------------------------------------------ */
+
+/* Small status / topic label, e.g. "ongoing", "FM-index". */
+.tag {
+  display: inline-block;
+  padding: 0.15rem 0.6rem;
+  margin: 0 0.35rem 0.35rem 0;
+  font-family: "Saira Extra Condensed", Arial, sans-serif;
+  font-size: 1rem;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: var(--site-accent-dark);
+  background-color: var(--site-accent-soft);
+  border-radius: 999px;
+}
+
+.tag--ongoing {
+  color: #7a4a00;
+  background-color: rgba(255, 193, 7, 0.18);
+}
+
+.tag--published {
+  color: #0f5132;
+  background-color: rgba(25, 135, 84, 0.14);
+}
+
+/* A single research project. */
+.project {
+  padding-bottom: 2.5rem;
+  margin-bottom: 2.5rem;
+  border-bottom: 1px solid var(--site-rule);
+}
+
+.project:last-child {
+  padding-bottom: 0;
+  margin-bottom: 0;
+  border-bottom: 0;
+}
+
+.project__body {
+  max-width: 68ch;
+}
+
+.project__body ul {
+  padding-left: 1.15rem;
+}
+
+.project__body li {
+  margin-bottom: 0.4rem;
+}
+
+.project__links {
+  padding-left: 0;
+  margin-top: 0.75rem;
+  list-style: none;
+}
+
+.project__links li {
+  display: inline-block;
+  margin: 0 1rem 0.5rem 0;
+}
+
+.project__links a {
+  font-weight: 800;
+}
+
+/* Publication entries. */
+.pub-list {
+  padding-left: 0;
+  list-style: none;
+}
+
+.pub {
+  max-width: 68ch;
+  padding-left: 1.25rem;
+  margin-bottom: 2rem;
+  border-left: 3px solid var(--site-accent-soft);
+}
+
+.pub__title {
+  font-weight: 800;
+}
+
+.pub__authors {
+  color: #3d443a;
+}
+
+.pub__authors .me {
+  font-weight: 800;
+  color: var(--site-accent-dark);
+}
+
+.pub__venue {
+  font-style: italic;
+  color: var(--site-muted);
+}
+
+.pub__links {
+  padding-left: 0;
+  margin-top: 0.4rem;
+  list-style: none;
+}
+
+.pub__links li {
+  display: inline-block;
+  margin: 0 0.9rem 0.25rem 0;
+  font-size: 0.9rem;
+}
+
+/* Dated entries used by Education, Activities and Teaching. */
+.entry {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-bottom: 2.5rem;
+}
+
+@media (min-width: 768px) {
+  .entry {
+    flex-direction: row;
+  }
+}
+
+.entry:last-child {
+  margin-bottom: 0;
+}
+
+.entry__main {
+  flex-grow: 1;
+  padding-right: 1rem;
+}
+
+.entry__date {
+  flex-shrink: 0;
+  color: var(--site-accent);
+  font-family: "Saira Extra Condensed", Arial, sans-serif;
+  font-size: 1.2rem;
+  text-transform: uppercase;
+}
+
+/* Compact, readable list of links (conferences, workshops, talks). */
+.link-list {
+  max-width: 60ch;
+  padding-left: 0;
+  margin-bottom: 1.75rem;
+  list-style: none;
+}
+
+.link-list li {
+  padding: 0.35rem 0;
+  border-bottom: 1px solid var(--site-rule);
+}
+
+.link-list li:last-child {
+  border-bottom: 0;
+}
+
+.link-list .link-list__note {
+  color: var(--site-muted);
+}
+
+/* ------------------------------------------------------------------ */
+/* 6. Poster overlay (lightbox)                                        */
+/* ------------------------------------------------------------------ */
+.poster-thumb {
+  display: block;
+  max-width: 18rem;
+  width: 100%;
+  height: auto;
+  padding: 0;
+  margin-top: 1.25rem;
+  background: none;
+  border: 1px solid var(--site-rule);
+  border-radius: var(--site-radius);
+  cursor: zoom-in;
+  transition: box-shadow 0.2s ease-in-out, transform 0.2s ease-in-out;
+}
+
+.poster-thumb:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0.5rem 1.25rem rgba(0, 0, 0, 0.15);
+}
+
+.poster-thumb img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: calc(var(--site-radius) - 1px);
+}
+
+.overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  align-items: center;
+  justify-content: center;
+  padding: 3.5rem 1rem 1rem;
+  background-color: rgba(0, 0, 0, 0.85);
+}
+
+.overlay.is-open {
+  display: flex;
+}
+
+.overlay iframe {
+  width: min(100%, 60rem);
+  height: 100%;
+  background-color: #fff;
+  border: none;
+  border-radius: var(--site-radius);
+}
+
+.close-btn {
+  position: absolute;
+  top: 1rem;
+  right: 1.25rem;
+  z-index: 10000;
+  padding: 0.5rem 1rem;
+  color: #fff;
+  background-color: var(--site-accent);
+  border: none;
+  border-radius: var(--site-radius);
+  cursor: pointer;
+}
+
+.close-btn:hover {
+  background-color: var(--site-accent-dark);
+}
+
+/* Stop the page behind the overlay from scrolling. */
+body.overlay-open {
+  overflow: hidden;
+}
+
+/* ------------------------------------------------------------------ */
+/* 7. Motion & print                                                   */
+/* ------------------------------------------------------------------ */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}
+
+@media print {
+  #sideNav,
+  .overlay,
+  .skip-link,
+  .social-icons {
+    display: none !important;
+  }
+
+  section.resume-section {
+    min-height: 0;
+    padding: 1rem 0;
+    page-break-inside: avoid;
+  }
+
+  a[href^="http"]::after {
+    content: " (" attr(href) ")";
+    font-size: 0.8em;
+    word-break: break-all;
+  }
+}

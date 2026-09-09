@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://draessld.github.io/mysite/sitemap.xml
